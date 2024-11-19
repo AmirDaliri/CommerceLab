@@ -1,0 +1,74 @@
+name: iOS Build and Test Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-15
+
+    steps:
+      # Checkout the repository
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      # Set up Xcode 16
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "16.0"
+
+      # Restore Derived Data Cache
+      - name: Restore Derived Data Cache
+        uses: actions/cache@v3
+        with:
+          path: DerivedData
+          key: ${{ runner.os }}-derived-data-${{ github.ref }}
+
+      # Restore Swift Package Cache
+      - name: Restore Swift Package Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.swiftpm
+          key: ${{ runner.os }}-swiftpm-${{ github.ref }}
+
+      # List available runtimes for debugging
+      - name: List Available Runtimes
+        run: xcrun simctl list runtimes
+
+      # Clean and reset simulators
+      - name: Clean Simulators
+        run: |
+          xcrun simctl shutdown all
+          xcrun simctl erase all
+          xcrun simctl delete unavailable
+
+      # Resolve Swift Package Dependencies
+      - name: Resolve Swift Package Dependencies
+        run: xcodebuild -resolvePackageDependencies
+
+      # Save Derived Data Cache
+      - name: Cache Derived Data
+        uses: actions/cache@v3
+        with:
+          path: DerivedData
+          key: ${{ runner.os }}-derived-data-${{ github.ref }}
+
+      # Save Swift Package Cache
+      - name: Cache Swift Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.swiftpm
+          key: ${{ runner.os }}-swiftpm-${{ github.ref }}
+
+      # Run tests
+      - name: Run Tests
+        run: |
+          xcodebuild test \
+            -project "CommerceLab.xcodeproj" \
+            -scheme "CommerceLabTests" \
+            -destination "platform=iOS Simulator,name=iPhone 16,OS=18.1" \
+            -derivedDataPath DerivedData
