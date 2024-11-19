@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8B3DEF1F2CED1F39002CD28A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DEF1E2CED1F39002CD28A /* Apollo */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8B3DEF012CED1A0E002CD28A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B3DEF1F2CED1F39002CD28A /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = CommerceLab;
 			packageProductDependencies = (
+				8B3DEF1E2CED1F39002CD28A /* Apollo */,
 			);
 			productName = CommerceLab;
 			productReference = 8B3DEEF02CED1A0C002CD28A /* CommerceLab.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 8B3DEEE72CED1A0C002CD28A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8B3DEF1D2CED1F39002CD28A /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8B3DEEF12CED1A0C002CD28A /* Products */;
 			projectDirPath = "";
@@ -558,6 +567,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B3DEF1D2CED1F39002CD28A /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.15.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B3DEF1E2CED1F39002CD28A /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B3DEF1D2CED1F39002CD28A /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B3DEEE82CED1A0C002CD28A /* Project object */;
 }
