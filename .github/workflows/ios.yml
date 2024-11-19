@@ -1,4 +1,4 @@
-name: iOS starter workflow
+name: iOS Build and Test Workflow
 
 on:
   push:
@@ -7,36 +7,41 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    runs-on: macos-latest  # Use the latest macOS runner for Xcode 16 compatibility
-
+  build-and-test:
+    runs-on: macos-15
+    timeout-minutes: 180
     steps:
-      - name: Checkout Repository
+      # Checkout the repository
+      - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Set up Xcode 16
-        uses: maxim-lobanov/setup-xcode@v1
+      # Set up Xcode 16
+      - name: Set up Xcode
+      - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "16"
+          xcode-version: "16.0" # Specify Xcode 16
 
-      - name: Resolve Swift Package Dependencies
-        run: xcodebuild -resolvePackageDependencies
-
+      # Clean up and reset simulators
       - name: Clean Simulators
         run: |
           xcrun simctl shutdown all
           xcrun simctl erase all
           xcrun simctl delete unavailable
 
+      # Boot the required simulator
       - name: Boot Simulator
         run: |
-          xcrun simctl boot "iPhone 14" || true
+          xcrun simctl boot "iPhone 14"
 
+      # Resolve Swift Package Dependencies
+      - name: Resolve Swift Package Dependencies
+        run: xcodebuild -resolvePackageDependencies
+
+      # Run tests
       - name: Run Tests
         run: |
           xcodebuild test \
             -workspace "CommerceLab.xcworkspace" \
             -scheme "CommerceLab" \
             -destination "platform=iOS Simulator,name=iPhone 14,OS=16.4" \
-            -derivedDataPath DerivedData \
-            -maximum-test-execution-time 1200
+            -derivedDataPath DerivedData
