@@ -32,12 +32,6 @@ jobs:
           xcrun simctl erase all
           xcrun simctl delete unavailable
 
-      # Create and Boot iPhone 15 Simulator
-      - name: Create and Boot iPhone 15 Simulator
-        run: |
-          xcrun simctl create "iPhone 15" com.apple.CoreSimulator.SimDeviceType.iPhone-15 com.apple.CoreSimulator.SimRuntime.iOS-17-0
-          xcrun simctl boot "iPhone 15"
-
       # Resolve Swift Package Dependencies
       - name: Resolve Swift Package Dependencies
         run: xcodebuild -resolvePackageDependencies
