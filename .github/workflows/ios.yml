@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-test:
     runs-on: macos-15
-    timeout-minutes: 180
+
     steps:
       # Checkout the repository
       - name: Checkout Source
