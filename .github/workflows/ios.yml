@@ -21,27 +21,13 @@ jobs:
         with:
           xcode-version: "16.0" # Specify Xcode 16
 
-      # Clean up and reset simulators
-      - name: Clean Simulators
-        run: |
-          xcrun simctl shutdown all
-          xcrun simctl erase all
-          xcrun simctl delete unavailable
 
-      # Boot the required simulator
-      - name: Boot Simulator
-        run: |
-          xcrun simctl boot "iPhone 14"
+      # Install any dependencies
+      - name: Install Dependencies
+        run: swift package resolve
 
-      # Resolve Swift Package Dependencies
-      - name: Resolve Swift Package Dependencies
-        run: xcodebuild -resolvePackageDependencies
-
-      # Run tests
-      - name: Run Tests
+      # Run tests on iPhone 14 Simulator with iOS 16.0
+      - name: Run Tests on iPhone 14 Simulator (iOS 16.0)
         run: |
           xcodebuild test \
-            -workspace "CommerceLab.xcworkspace" \
-            -scheme "CommerceLab" \
-            -destination "platform=iOS Simulator,name=iPhone 14,OS=16.4" \
-            -derivedDataPath DerivedData
+          -scheme 'CommerceLab'
