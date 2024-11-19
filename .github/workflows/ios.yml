@@ -21,6 +21,20 @@ jobs:
         with:
           xcode-version: "16.0"
 
+      # Restore Derived Data Cache
+      - name: Restore Derived Data Cache
+        uses: actions/cache@v3
+        with:
+          path: DerivedData
+          key: ${{ runner.os }}-derived-data-${{ github.ref }}
+
+      # Restore Swift Package Cache
+      - name: Restore Swift Package Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.swiftpm
+          key: ${{ runner.os }}-swiftpm-${{ github.ref }}
+
       # List available runtimes for debugging
       - name: List Available Runtimes
         run: xcrun simctl list runtimes
@@ -35,6 +49,20 @@ jobs:
       # Resolve Swift Package Dependencies
       - name: Resolve Swift Package Dependencies
         run: xcodebuild -resolvePackageDependencies
+
+      # Save Derived Data Cache
+      - name: Cache Derived Data
+        uses: actions/cache@v3
+        with:
+          path: DerivedData
+          key: ${{ runner.os }}-derived-data-${{ github.ref }}
+
+      # Save Swift Package Cache
+      - name: Cache Swift Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.swiftpm
+          key: ${{ runner.os }}-swiftpm-${{ github.ref }}
 
       # Run tests
       - name: Run Tests
