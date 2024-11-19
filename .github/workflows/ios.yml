@@ -42,5 +42,5 @@ jobs:
           xcodebuild test \
             -project "CommerceLab.xcodeproj" \
             -scheme "CommerceLabTests" \
-            -destination "platform=iOS Simulator,name=iPhone 16,OS=18.0" \
+            -destination "platform=iOS Simulator,name=iPhone 16,OS=18.1" \
             -derivedDataPath DerivedData
