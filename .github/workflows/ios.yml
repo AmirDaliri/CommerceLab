@@ -20,20 +20,23 @@ jobs:
           xcode-version: "16"
 
       - name: Resolve Swift Package Dependencies
-        run: |
-          # Resolve SPM dependencies to generate the workspace
-          xcodebuild -resolvePackageDependencies -scheme CommerceLab
+        run: xcodebuild -resolvePackageDependencies
 
-      - name: Build
-        env:
-          scheme: CommerceLab
+      - name: Clean Simulators
         run: |
-          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//")
-          xcodebuild build-for-testing -scheme "$scheme" -destination "platform=iOS Simulator,name=$device"
+          xcrun simctl shutdown all
+          xcrun simctl erase all
+          xcrun simctl delete unavailable
 
-      - name: Test
-        env:
-          scheme: CommerceLab
+      - name: Boot Simulator
         run: |
-          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//")
-          xcodebuild test-without-building -scheme "$scheme" -destination "platform=iOS Simulator,name=$device"
+          xcrun simctl boot "iPhone 14" || true
+
+      - name: Run Tests
+        run: |
+          xcodebuild test \
+            -workspace "CommerceLab.xcworkspace" \
+            -scheme "CommerceLab" \
+            -destination "platform=iOS Simulator,name=iPhone 14,OS=16.4" \
+            -derivedDataPath DerivedData \
+            -maximum-test-execution-time 1200
