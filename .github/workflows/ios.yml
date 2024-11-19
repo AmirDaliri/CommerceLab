@@ -8,32 +8,33 @@ on:
 
 jobs:
   build:
-    runs-on: macos-15  # Use macos-13 for Xcode 15 compatibility
+    runs-on: macos-13  # Use macOS 13 for Xcode 16 compatibility
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set Default Scheme
+      - name: Set up Xcode 16
+        uses: maxim-lobanov/setup-xcode@v2
+        with:
+          xcode-version: "16"
+
+      - name: Resolve Swift Package Dependencies
         run: |
-          scheme_list=$(xcodebuild -list -json 2>/dev/null | tr -d "\n")
-          if [[ -z "$scheme_list" ]]; then
-            echo "Error: Unable to list schemes. Ensure your project file format is compatible."
-            exit 1
-          fi
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
+          # Resolve SPM dependencies to generate the workspace
+          xcodebuild -resolvePackageDependencies -scheme CommerceLab
 
       - name: Build
         env:
           scheme: CommerceLab
         run: |
-          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          xcodebuild build-for-testing -scheme "$scheme" -workspace "CommerceLab.xcworkspace" -destination "platform=iOS Simulator,name=$device"
+          # Get the available iPhone simulator
+          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//")
+          xcodebuild build-for-testing -scheme "$scheme" -workspace "CommerceLab.xcodeproj" -destination "platform=iOS Simulator,name=$device"
 
       - name: Test
         env:
           scheme: CommerceLab
         run: |
-          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
-          xcodebuild test-without-building -scheme "$scheme" -workspace "CommerceLab.xcworkspace" -destination "platform=iOS Simulator,name=$device"
+          # Test the app using the same simulator
+          device=$(xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//")
+          xcodebuild test-without-building -scheme "$scheme" -workspace "CommerceLab.xcodeproj" -destination "platform=iOS Simulator,name=$device"
