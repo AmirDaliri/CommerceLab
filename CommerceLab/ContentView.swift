@@ -8,12 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel: CategoryViewModel
+
+    init() {
+        let networkService = NetworkService()
+        _viewModel = StateObject(wrappedValue: CategoryViewModel(networkService: networkService))
+    }
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            if viewModel.isLoading {
+                Text("Loading categories...")
+            } else if let error = viewModel.errorMessage {
+                Text("Error: \(error)")
+                    .foregroundColor(.red)
+            } else {
+                List(viewModel.categories, id: \.id) { category in
+                    Text(category.name)
+                }
+            }
+        }
+        .onAppear {
+            viewModel.loadCategories()
         }
         .padding()
     }

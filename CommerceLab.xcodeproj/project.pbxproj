@@ -8,17 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8B3DEF1F2CED1F39002CD28A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DEF1E2CED1F39002CD28A /* Apollo */; };
+		8BDE651C2CED3894007FCA4E /* CommerceLabAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE651B2CED3894007FCA4E /* CommerceLabAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		8B3DEF012CED1A0E002CD28A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8B3DEEE82CED1A0C002CD28A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8B3DEEEF2CED1A0C002CD28A;
-			remoteInfo = CommerceLab;
-		};
-		8B3DEF0B2CED1A0E002CD28A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8B3DEEE82CED1A0C002CD28A /* Project object */;
 			proxyType = 1;
@@ -30,7 +24,6 @@
 /* Begin PBXFileReference section */
 		8B3DEEF02CED1A0C002CD28A /* CommerceLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CommerceLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3DEF002CED1A0E002CD28A /* CommerceLabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommerceLabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B3DEF0A2CED1A0E002CD28A /* CommerceLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommerceLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,11 +37,6 @@
 			path = CommerceLabTests;
 			sourceTree = "<group>";
 		};
-		8B3DEF0D2CED1A0E002CD28A /* CommerceLabUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CommerceLabUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,18 +44,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BDE651C2CED3894007FCA4E /* CommerceLabAPI in Frameworks */,
 				8B3DEF1F2CED1F39002CD28A /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8B3DEEFD2CED1A0E002CD28A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8B3DEF072CED1A0E002CD28A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,7 +64,6 @@
 			children = (
 				8B3DEEF22CED1A0C002CD28A /* CommerceLab */,
 				8B3DEF032CED1A0E002CD28A /* CommerceLabTests */,
-				8B3DEF0D2CED1A0E002CD28A /* CommerceLabUITests */,
 				8B3DEEF12CED1A0C002CD28A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,7 +73,6 @@
 			children = (
 				8B3DEEF02CED1A0C002CD28A /* CommerceLab.app */,
 				8B3DEF002CED1A0E002CD28A /* CommerceLabTests.xctest */,
-				8B3DEF0A2CED1A0E002CD28A /* CommerceLabUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +98,7 @@
 			name = CommerceLab;
 			packageProductDependencies = (
 				8B3DEF1E2CED1F39002CD28A /* Apollo */,
+				8BDE651B2CED3894007FCA4E /* CommerceLabAPI */,
 			);
 			productName = CommerceLab;
 			productReference = 8B3DEEF02CED1A0C002CD28A /* CommerceLab.app */;
@@ -146,29 +127,6 @@
 			productReference = 8B3DEF002CED1A0E002CD28A /* CommerceLabTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8B3DEF092CED1A0E002CD28A /* CommerceLabUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8B3DEF1A2CED1A0E002CD28A /* Build configuration list for PBXNativeTarget "CommerceLabUITests" */;
-			buildPhases = (
-				8B3DEF062CED1A0E002CD28A /* Sources */,
-				8B3DEF072CED1A0E002CD28A /* Frameworks */,
-				8B3DEF082CED1A0E002CD28A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8B3DEF0C2CED1A0E002CD28A /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8B3DEF0D2CED1A0E002CD28A /* CommerceLabUITests */,
-			);
-			name = CommerceLabUITests;
-			packageProductDependencies = (
-			);
-			productName = CommerceLabUITests;
-			productReference = 8B3DEF0A2CED1A0E002CD28A /* CommerceLabUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -186,10 +144,6 @@
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = 8B3DEEEF2CED1A0C002CD28A;
 					};
-					8B3DEF092CED1A0E002CD28A = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = 8B3DEEEF2CED1A0C002CD28A;
-					};
 				};
 			};
 			buildConfigurationList = 8B3DEEEB2CED1A0C002CD28A /* Build configuration list for PBXProject "CommerceLab" */;
@@ -203,6 +157,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8B3DEF1D2CED1F39002CD28A /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				8BDE651A2CED3894007FCA4E /* XCLocalSwiftPackageReference "CommerceLab/Generated/CommerceLabAPI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8B3DEEF12CED1A0C002CD28A /* Products */;
@@ -211,7 +166,6 @@
 			targets = (
 				8B3DEEEF2CED1A0C002CD28A /* CommerceLab */,
 				8B3DEEFF2CED1A0E002CD28A /* CommerceLabTests */,
-				8B3DEF092CED1A0E002CD28A /* CommerceLabUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -225,13 +179,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8B3DEEFE2CED1A0E002CD28A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8B3DEF082CED1A0E002CD28A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -255,13 +202,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8B3DEF062CED1A0E002CD28A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -269,11 +209,6 @@
 			isa = PBXTargetDependency;
 			target = 8B3DEEEF2CED1A0C002CD28A /* CommerceLab */;
 			targetProxy = 8B3DEF012CED1A0E002CD28A /* PBXContainerItemProxy */;
-		};
-		8B3DEF0C2CED1A0E002CD28A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8B3DEEEF2CED1A0C002CD28A /* CommerceLab */;
-			targetProxy = 8B3DEF0B2CED1A0E002CD28A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -493,40 +428,6 @@
 			};
 			name = Release;
 		};
-		8B3DEF1B2CED1A0E002CD28A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6H7676V3J4;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amir.CommerceLabUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CommerceLab;
-			};
-			name = Debug;
-		};
-		8B3DEF1C2CED1A0E002CD28A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6H7676V3J4;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amir.CommerceLabUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CommerceLab;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -557,16 +458,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B3DEF1A2CED1A0E002CD28A /* Build configuration list for PBXNativeTarget "CommerceLabUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8B3DEF1B2CED1A0E002CD28A /* Debug */,
-				8B3DEF1C2CED1A0E002CD28A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		8BDE651A2CED3894007FCA4E /* XCLocalSwiftPackageReference "CommerceLab/Generated/CommerceLabAPI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = CommerceLab/Generated/CommerceLabAPI;
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		8B3DEF1D2CED1F39002CD28A /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
@@ -584,6 +483,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B3DEF1D2CED1F39002CD28A /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		8BDE651B2CED3894007FCA4E /* CommerceLabAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CommerceLabAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

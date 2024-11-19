@@ -1,0 +1,45 @@
+{
+  "schemaNamespace": "CommerceLabAPI",
+  "input": {
+    "operationSearchPaths": [
+      "./CommerceLab/**/*.graphql"
+    ],
+    "schemaSearchPaths": [
+      "./graphql/schema.graphqls"
+    ]
+  },
+  "output": {
+    "testMocks": {
+      "none": {}
+    },
+    "schemaTypes": {
+      "path": "./CommerceLab/Generated/CommerceLabAPI",
+      "moduleType": {
+        "swiftPackageManager": {}
+      }
+    },
+    "operations": {
+      "relative": {
+        "path": "./CommerceLab/Generated/Operations",
+        "moduleType": {
+          "swiftPackageManager": {}
+        }
+      }
+    }
+  },
+  "schemaDownloadConfiguration": {
+    "downloadMethod": {
+      "introspection": {
+        "endpointURL": "https://hcapi.sch.awstest.hebiar.com/graphql",
+        "httpMethod": {
+          "POST": {}
+        },
+        "includeDeprecatedInputValues": false,
+        "outputFormat": "SDL"
+      }
+    },
+    "downloadTimeout": 60,
+    "headers": [],
+    "outputPath": "./graphql/schema.graphqls"
+  }
+}
