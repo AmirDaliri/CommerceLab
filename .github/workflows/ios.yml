@@ -40,7 +40,7 @@ jobs:
       - name: Run Tests
         run: |
           xcodebuild test \
-            -workspace "CommerceLab.xcworkspace" \
+            -workspace "CommerceLab.xcodeproj" \
             -scheme "CommerceLab" \
             -destination "platform=iOS Simulator,name=iPhone 16,OS=18.0" \
             -derivedDataPath DerivedData
