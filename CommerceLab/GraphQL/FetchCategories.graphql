@@ -1,10 +1,21 @@
 query FetchCategories {
-    menuByType(type: "Main Menu") {
-        id
-        name
-        icon
-        menuId
-        parentMenuId
-        type
+  categories {
+    id
+    parentCategoryId
+    name
+    description
+    icon
+    flag
+    flagStyle
+    picture
+    genericAttributes {
+      key
+      value
+      storeId
     }
+    showOnHomePage
+    showOnSearchBox
+    includeInTopMenu
+    hideOnCatalog
+  }
 }

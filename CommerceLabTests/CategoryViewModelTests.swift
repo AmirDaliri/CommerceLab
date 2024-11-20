@@ -13,24 +13,42 @@ class CategoryViewModelTests: XCTestCase {
         let mockService = MockNetworkService(mockResult: .success([]))
         let viewModel = CategoryViewModel(networkService: mockService)
 
-        XCTAssertTrue(viewModel.categories.isEmpty)
+        XCTAssertTrue(viewModel.groupedCategories.isEmpty)
         XCTAssertFalse(viewModel.isLoading)
         XCTAssertNil(viewModel.errorMessage)
     }
 
     func testLoadCategoriesSuccess() {
-        let mockCategories = [Category(id: 1, name: "Test Category", icon: "icon.png", menuId: 1, parentMenuId: nil, type: "Main")]
+        let mockCategories: [CommerceLab.Category] = [
+            CommerceLab.Category(
+                id: "1",
+                parentCategoryId: "99999",
+                name: "Kolye",
+                description: "Main category for necklaces",
+                icon: "MenuItem/Kolye.png",
+                flag: nil,
+                flagStyle: nil,
+                picture: "https://example.com/image1.png",
+                genericAttributes: [
+                    CommerceLab.GenericAttribute(key: "SEO_TEXT", value: "Necklaces collection", storeId: "store1")
+                ],
+                showOnHomePage: true,
+                showOnSearchBox: true,
+                includeInTopMenu: true,
+                hideOnCatalog: false
+            )
+        ]
         let mockService = MockNetworkService(mockResult: .success(mockCategories))
         let viewModel = CategoryViewModel(networkService: mockService)
 
         let expectation = XCTestExpectation(description: "Categories loaded successfully")
 
         viewModel.loadCategories()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // Simulate async behavior
+        /// Simulate async behavior
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             XCTAssertFalse(viewModel.isLoading)
-            XCTAssertEqual(viewModel.categories.count, 1)
-            XCTAssertEqual(viewModel.categories.first?.name, "Test Category")
+            XCTAssertEqual(viewModel.groupedCategories.count, 1)
+            XCTAssertEqual(viewModel.groupedCategories.first?.parentId, "99999")
             XCTAssertNil(viewModel.errorMessage)
             expectation.fulfill()
         }
@@ -46,9 +64,9 @@ class CategoryViewModelTests: XCTestCase {
 
         viewModel.loadCategories()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // Simulate async behavior
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             XCTAssertFalse(viewModel.isLoading)
-            XCTAssertTrue(viewModel.categories.isEmpty)
+            XCTAssertTrue(viewModel.groupedCategories.isEmpty)
             XCTAssertNotNil(viewModel.errorMessage)
             XCTAssertEqual(viewModel.errorMessage, "The operation couldn’t be completed. (TestError error 0.)")
             expectation.fulfill()

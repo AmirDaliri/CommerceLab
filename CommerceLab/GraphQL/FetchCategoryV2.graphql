@@ -1,0 +1,21 @@
+query FetchCategoryV2 {
+    categoryV2 {
+        data {
+            name
+            totalItems
+            products {
+                id
+                name
+                categories {
+                    name
+                }
+                price {
+                    priceValue
+                }
+                pictures {
+                    imageUrl
+                }
+            }
+        }
+    }
+}
