@@ -4,8 +4,8 @@
 import ApolloAPI
 
 public extension Objects {
-  static let CategorySimpleModel = ApolloAPI.Object(
-    typename: "CategorySimpleModel",
+  static let ProductPriceModelType = ApolloAPI.Object(
+    typename: "ProductPriceModelType",
     implementedInterfaces: []
   )
 }

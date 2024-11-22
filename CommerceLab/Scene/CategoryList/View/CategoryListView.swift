@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CategoryListView.swift
 //  CommerceLab
 //
 //  Created by Amir Daliri on 19.11.2024.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CategoryListView: View {
     @StateObject private var viewModel = CategoryViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Group {
                 if viewModel.isLoading {
                     ProgressView("Loading categories...")
@@ -26,9 +26,6 @@ struct ContentView: View {
             }
             .navigationTitle("Categories")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                viewModel.loadCategories()
-            }
         }
     }
 
@@ -45,7 +42,9 @@ struct ContentView: View {
                     ),
                     content: {
                         ForEach(group.categories, id: \.id) { category in
-                            subcategoryRow(for: category)
+                            NavigationLink(destination: CategoryDetailView(viewModel: CategoryDetailViewModel(categoryId: category.id))) {
+                                subcategoryRow(for: category)
+                            }
                         }
                     },
                     label: {
@@ -104,4 +103,8 @@ struct ContentView: View {
         }
         .padding(.vertical, 4)
     }
+}
+
+#Preview {
+    CategoryListView()
 }

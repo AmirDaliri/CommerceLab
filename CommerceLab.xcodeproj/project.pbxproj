@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B3DEF1F2CED1F39002CD28A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DEF1E2CED1F39002CD28A /* Apollo */; };
+		8B7052E02CEFF6370089E550 /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7052DF2CEFF6370089E550 /* ApolloSQLite */; };
 		8BDE651C2CED3894007FCA4E /* CommerceLabAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDE651B2CED3894007FCA4E /* CommerceLabAPI */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 			files = (
 				8BDE651C2CED3894007FCA4E /* CommerceLabAPI in Frameworks */,
 				8B3DEF1F2CED1F39002CD28A /* Apollo in Frameworks */,
+				8B7052E02CEFF6370089E550 /* ApolloSQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +66,7 @@
 			children = (
 				8B3DEEF22CED1A0C002CD28A /* CommerceLab */,
 				8B3DEF032CED1A0E002CD28A /* CommerceLabTests */,
+				8B7052DE2CEFF6370089E550 /* Frameworks */,
 				8B3DEEF12CED1A0C002CD28A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +78,13 @@
 				8B3DEF002CED1A0E002CD28A /* CommerceLabTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8B7052DE2CEFF6370089E550 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +109,7 @@
 			packageProductDependencies = (
 				8B3DEF1E2CED1F39002CD28A /* Apollo */,
 				8BDE651B2CED3894007FCA4E /* CommerceLabAPI */,
+				8B7052DF2CEFF6370089E550 /* ApolloSQLite */,
 			);
 			productName = CommerceLab;
 			productReference = 8B3DEEF02CED1A0C002CD28A /* CommerceLab.app */;
@@ -483,6 +494,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B3DEF1D2CED1F39002CD28A /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		8B7052DF2CEFF6370089E550 /* ApolloSQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B3DEF1D2CED1F39002CD28A /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloSQLite;
 		};
 		8BDE651B2CED3894007FCA4E /* CommerceLabAPI */ = {
 			isa = XCSwiftPackageProductDependency;

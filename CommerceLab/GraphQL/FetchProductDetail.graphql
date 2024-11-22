@@ -1,27 +1,17 @@
-query FetchProductDetail {
-  product {
-    id
-    name
-    seoDescription
-    fullDescription
-    shortDescription
-    isFreeShipping
-    productSlicers {
-      variants {
-        priceValue
-      }
-    }
-    productSpecifications {
-      specificationAttributeName
-      valueRaw
-    }
-    productReviewOverview {
-      allowCustomerReviews
-      ratingSum
-      totalReviews
-    }
+query FetchProductDetail($productId: String) {
+  product(id: $productId) {
     pictureModels {
       imageUrl
+      thumbImageUrl
+      fullSizeImageUrl
     }
+    productType
+    name
+    shortDescription
+    fullDescription
+    productPrice {
+      price
+    }
+    id
   }
 }

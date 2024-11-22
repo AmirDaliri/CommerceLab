@@ -36,4 +36,10 @@ struct MockNetworkService: NetworkProtocol {
             }
             .sorted { $0.parentId < $1.parentId }
     }
+    
+    func fetchCategory(with id: String, pageNumber: Int) -> AnyPublisher<CommerceLab.CategoryV2, any Error> {
+        Future { promise in
+            promise(.success(CategoryV2.init(isSuccess: true, data: nil)))
+        }.eraseToAnyPublisher()
+    }
 }

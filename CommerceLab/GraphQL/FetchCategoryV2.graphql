@@ -1,20 +1,53 @@
-query FetchCategoryV2 {
-    categoryV2 {
+query FetchCategoryV2($categoryId: String!, $pageSize: Int!, $pageNumber: Int!) {
+    categoryV2(categoryId: $categoryId, command: {
+        pageNumber: $pageNumber,
+        pageSize: $pageSize,
+        pagePath: "https://hcapi.sch.awstest.hebiar.com/graphql/categoryv2?categoryId=$categoryId&includeDocuments=true&includeFacets=true",
+        selectedSpecFilter: []})
+    {
+        isSuccess,
         data {
-            name
-            totalItems
-            products {
-                id
-                name
-                categories {
-                    name
-                }
-                price {
-                    priceValue
-                }
-                pictures {
+            id,
+            name,
+            metaKeywords,
+            metaDescription,
+            metaTitle,
+            seName,
+            flag,
+            icon,
+            subCategories
+            {
+                id,
+                name,
+                icon,
+                pictureModel
+                {
                     imageUrl
                 }
+            },
+            products
+            {
+                id,
+                name,
+                seName,
+                fullDescription,
+                pictures {
+                    type,
+                    imageUrl,
+                    videoUrl,
+                    fullSizeImageUrl
+                }
+                specificationAttributeModels {
+                    specificationAttributeName,
+                    colorSquaresRgb,
+                    valueRaw,
+                },
+                
+            },
+            fasedSeoList {
+                id,
+                seName,
+                aLink,
             }
         }
     }

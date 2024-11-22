@@ -12,8 +12,23 @@ import Combine
 struct NetworkService: NetworkProtocol {
     private let apollo: ApolloClient
     
-    init(client: ApolloClient = ApolloClient(url: URL(string: "https://hcapi.sch.awstest.hebiar.com/graphql")!)) {
-        self.apollo = client
+    init() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = [
+            "language": "tr",
+            "culture": "tr-TR",
+            "Content-Type": "application/json"
+        ]
+        
+        let store = ApolloStore(cache: InMemoryNormalizedCache())
+        
+        let networkTransport = RequestChainNetworkTransport(
+            interceptorProvider: DefaultInterceptorProvider(client: URLSessionClient(), shouldInvalidateClientOnDeinit: true, store: store),
+            endpointURL: URL(string: "https://hcapi.sch.awstest.hebiar.com/graphql")!,
+            additionalHeaders: configuration.httpAdditionalHeaders as! [String: String]
+        )
+        
+        apollo = ApolloClient(networkTransport: networkTransport, store: store)
     }
     
     func fetchCategoriesGrouped() -> AnyPublisher<[CategoryGroup], Error> {
@@ -51,5 +66,25 @@ struct NetworkService: NetworkProtocol {
                 .sorted { $0.parentId < $1.parentId }
             }
             .eraseToAnyPublisher()
+    }
+    
+    func fetchCategory(with id: String, pageNumber: Int) -> AnyPublisher<CategoryV2, Error> {
+        Future { promise in
+            self.apollo.fetch(query: FetchCategoryV2Query(categoryId: id, pageSize: 30, pageNumber: pageNumber)) { result in
+                switch result {
+                case .success(let graphQLResult):
+                    if let categoryData = graphQLResult.data?.categoryV2 {
+                        promise(.success(categoryData.toDomain()))
+                    } else if let errors = graphQLResult.errors {
+                        promise(.failure(errors.first!))
+                    } else {
+                        promise(.failure(NSError(domain: "NetworkError", code: -1, userInfo: nil)))
+                    }
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

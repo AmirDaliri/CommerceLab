@@ -9,4 +9,6 @@ import Combine
 
 protocol NetworkProtocol {
     func fetchCategoriesGrouped() -> AnyPublisher<[CategoryGroup], Error>
+    func fetchCategory(with id: String, pageNumber: Int) -> AnyPublisher<CategoryV2, Error>
+        
 }

@@ -21,19 +21,17 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
   public static func objectType(forTypename typename: String) -> ApolloAPI.Object? {
     switch typename {
     case "ApiResponseOfCategoryProductModelType": return CommerceLabAPI.Objects.ApiResponseOfCategoryProductModelType
+    case "CategoryFasedSeoModelType": return CommerceLabAPI.Objects.CategoryFasedSeoModelType
     case "CategoryItemType": return CommerceLabAPI.Objects.CategoryItemType
     case "CategoryProductModelType": return CommerceLabAPI.Objects.CategoryProductModelType
-    case "CategorySimpleModel": return CommerceLabAPI.Objects.CategorySimpleModel
     case "GenericAttribute": return CommerceLabAPI.Objects.GenericAttribute
     case "PictureModelType": return CommerceLabAPI.Objects.PictureModelType
     case "ProductDetailType": return CommerceLabAPI.Objects.ProductDetailType
     case "ProductOverviewType": return CommerceLabAPI.Objects.ProductOverviewType
-    case "ProductPriceModel": return CommerceLabAPI.Objects.ProductPriceModel
-    case "ProductReviewOverviewModelType": return CommerceLabAPI.Objects.ProductReviewOverviewModelType
-    case "ProductSlicerModelType": return CommerceLabAPI.Objects.ProductSlicerModelType
-    case "ProductSlicerOptionDetailModelType": return CommerceLabAPI.Objects.ProductSlicerOptionDetailModelType
+    case "ProductPriceModelType": return CommerceLabAPI.Objects.ProductPriceModelType
     case "ProductSpecificationModelType": return CommerceLabAPI.Objects.ProductSpecificationModelType
     case "Query": return CommerceLabAPI.Objects.Query
+    case "SubCategoryModel": return CommerceLabAPI.Objects.SubCategoryModel
     default: return nil
     }
   }

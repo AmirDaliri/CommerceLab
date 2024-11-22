@@ -19,6 +19,7 @@ final class CategoryViewModel: ObservableObject {
 
     init(networkService: NetworkProtocol = NetworkService()) {
         self.networkService = networkService
+        self.loadCategories()
     }
 
     func loadCategories() {

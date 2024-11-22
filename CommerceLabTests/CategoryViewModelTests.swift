@@ -14,7 +14,7 @@ class CategoryViewModelTests: XCTestCase {
         let viewModel = CategoryViewModel(networkService: mockService)
 
         XCTAssertTrue(viewModel.groupedCategories.isEmpty)
-        XCTAssertFalse(viewModel.isLoading)
+        XCTAssertFalse(!viewModel.isLoading)
         XCTAssertNil(viewModel.errorMessage)
     }
 
